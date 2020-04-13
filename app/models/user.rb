@@ -3,4 +3,18 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  validates :username, uniqueness: true
+  devise :database_authenticatable, :authentication_keys => [:username]
+
+  has_many :shopping_lists
+  has_many :shopping_list_items, through: :shopping_lists
+
+  def email_required?
+    false
+  end
+
+  def will_save_change_to_email?
+    true
+  end
 end

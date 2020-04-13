@@ -1,0 +1,11 @@
+<div class="container">
+  <h1>Upcoming shopping trips</h1>
+  <% @shopping_trips.each do |shopping_trip| %>
+    <p> <%= link_to shopping_trip.date, shopping_list_path(shopping_trip) %> </p>
+  <% end %>
+
+
+  <%= link_to 'new shopping trip', new_shopping_trip_path %>
+</div>
+
+
