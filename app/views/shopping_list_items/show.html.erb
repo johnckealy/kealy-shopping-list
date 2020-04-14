@@ -1,7 +1,15 @@
 <div class="container">
-  <h1>shopping list items</h1>
+  <h1>Shopping list items for the <%= @shopping_trip.date %> shop</h1>
+  <% @all_items.each do |item| %>
+    <p><%= item.name %></p>
+  <% end %>
 
-  <%= render 'form', shopping_list_item: @shopping_list_item %>
+  <%= simple_form_for @shopping_list_items do |f| %>
+    <%= f.association :items , class: "select2", input_html: {multiple: true, class: "select2"} %>
+    <%= hidden_field_tag 'shopping_list_id', @shopping_list.id %>
 
+    <%= f.submit "Add", class: "btn btn-primary" %>
+  <% end %>
 
 </div>
+

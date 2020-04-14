@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_165045) do
+ActiveRecord::Schema.define(version: 2020_04_14_113420) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,11 +23,11 @@ ActiveRecord::Schema.define(version: 2020_04_13_165045) do
   end
 
   create_table "shopping_list_items", force: :cascade do |t|
-    t.bigint "item_id", null: false
     t.bigint "shopping_list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["item_id"], name: "index_shopping_list_items_on_item_id"
+    t.string "name"
+    t.string "quantity"
     t.index ["shopping_list_id"], name: "index_shopping_list_items_on_shopping_list_id"
   end
 
@@ -59,7 +59,6 @@ ActiveRecord::Schema.define(version: 2020_04_13_165045) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "shopping_list_items", "items"
   add_foreign_key "shopping_list_items", "shopping_lists"
   add_foreign_key "shopping_lists", "shopping_trips"
   add_foreign_key "shopping_lists", "users"

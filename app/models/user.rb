@@ -7,6 +7,9 @@ class User < ApplicationRecord
   validates :username, uniqueness: true
   devise :database_authenticatable, :authentication_keys => [:username]
 
+  validates :email, :uniqueness => {:allow_blank => true}
+
+
   has_many :shopping_lists
   has_many :shopping_list_items, through: :shopping_lists
 
