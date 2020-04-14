@@ -2,5 +2,8 @@
 
 <div class="container">
   New shopping trip
-  <%= render 'form', shopping_trip: @shopping_trip %>
+  <%= simple_form_for @shopping_trip do |f| %>
+    <%= f.input :date %>
+    <%= f.submit "Add", class: "btn btn-primary" %>
+  <% end %>
 </div>

@@ -1,0 +1,20 @@
+<div class="container">
+
+  <h1 style="text-align: center">Full Shopping list</h1>
+
+
+  <div class="display-list">
+    <ul>
+      <% @full_shop.each do |item| %>
+        <li>
+          <%= item.name %>
+          <% if !item.quantity.nil?  %>
+            – <%= item.quantity %>
+          <% end %>
+          <span style="opacity: 0.3">(<%= item.shopping_list.user.username[0].capitalize %>)</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+

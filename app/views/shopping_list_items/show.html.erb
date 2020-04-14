@@ -1,15 +1,31 @@
 <div class="container">
-  <h1>Shopping list items for the <%= @shopping_trip.date %> shop</h1>
-  <% @all_items.each do |item| %>
-    <p><%= item.name %></p>
-  <% end %>
+  <h1><strong><%= current_user.username.capitalize %>'s </strong>  items for the shop on <strong><%= @shopping_trip.date.strftime("%A, %d %b") %></strong></h1>
+
+   <br><br><br>
 
   <%= simple_form_for @shopping_list_items do |f| %>
-    <%= f.association :items , class: "select2", input_html: {multiple: true, class: "select2"} %>
+    <%= f.association :items , label: "Select one or more grocery items and click 'add to shopping list'  ", class: "select2", input_html: {multiple: true, class: "select2"} %>
     <%= hidden_field_tag 'shopping_list_id', @shopping_list.id %>
+    <%= f.input :quantity, label: "Quantity (optional)", placeholder: "6 of, 1 litre of, 500kg, etc..." %>
 
-    <%= f.submit "Add", class: "btn btn-primary" %>
+    <%= f.submit "Add to shopping list", class: "btn w-100 btn-primary" %>
   <% end %>
 
+  <br><br>
+
+  <h3 style="margin: 30px auto 5px auto; text-align: center;">Your items</h3>
+
+  <div class="display-list">
+    <ul>
+      <% @all_items.each do |item| %>
+        <li>
+          <%= item.name %>
+          <% if !item.quantity.nil?  %>
+           (<%= item.quantity %>)
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
 </div>
 

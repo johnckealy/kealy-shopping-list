@@ -13,3 +13,50 @@
 // Your CSS partials
 @import "components/index";
 @import "pages/index";
+
+
+h1 {
+  text-align: center;
+  padding: 50px;
+  @media (max-width: 1000px) {
+    font-size: 1.7em;
+  }
+}
+
+.fancy {
+  font-family: 'Handlee', cursive;
+}
+
+
+.display-list {
+  background-color: white;
+  border: 1px solid black;
+  width: 80%;
+  margin: 0 auto;
+  ul {
+    padding: 10px 40px;
+    list-style: none;
+  }
+  li {
+    font-size: 1.4em;
+    font-family: 'Handlee', cursive;
+  }
+}
+
+
+.container {
+  max-width: 700px;
+}
+
+.card {
+  text-align: center;
+  margin: 20px auto;
+  font-size: 1.3em;
+  a {
+    color: black;
+    text-decoration: none;
+  }
+  &:hover {
+    opacity: 0.7;
+  }
+}
