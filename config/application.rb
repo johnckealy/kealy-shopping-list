@@ -1,4 +1,5 @@
 require_relative 'boot'
+require 'sprockets/railtie'
 
 require 'rails/all'
 
@@ -22,5 +23,6 @@ module KealyShoppingList
     # the framework and any gems in your application.
     # config.serve_static_assets = true
     config.assets.initialize_on_precompile = false
+
   end
 end
