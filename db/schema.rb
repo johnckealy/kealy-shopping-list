@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_154007) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "name"
     t.string "quantity"
-    t.boolean "done"
+    t.boolean "done", default: false
     t.index ["shopping_list_id"], name: "index_shopping_list_items_on_shopping_list_id"
   end
 

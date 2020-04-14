@@ -2,19 +2,35 @@
 
   <h1 style="text-align: center">Full Shopping list</h1>
 
-
   <div class="display-list">
     <ul>
       <% @full_shop.each do |item| %>
         <li>
           <%= item.name %>
+
           <% if !item.quantity.nil?  %>
-            – <%= item.quantity %>
+            – <%= item.quantity %> – <%= item.id %>
           <% end %>
           <span style="opacity: 0.3">(<%= item.shopping_list.user.username[0].capitalize %>)</span>
+          <%= link_to admin_checkbox_path(item_id: item.id, item_done: item.done), remote: true do %>
+            <% if item.done %>
+              <i class="checkmark fas fa-check-circle checked"></i>
+            <% else %>
+              <i class="checkmark fas fa-check-circle"></i>
+            <% end %>
+          <% end %>
+
         </li>
       <% end %>
     </ul>
   </div>
 </div>
 
+
+<script>
+  Array.from(document.getElementsByClassName("checkmark")).forEach(function(item) {
+     item.addEventListener('click', function() {
+       item.classList.toggle("checked");
+     })
+  });
+</script>

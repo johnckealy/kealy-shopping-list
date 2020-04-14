@@ -1,5 +1,7 @@
 class ShoppingListItemsController < ApplicationController
 
+  protect_from_forgery except: :adminshow
+
   def index
 
   end
@@ -32,11 +34,15 @@ class ShoppingListItemsController < ApplicationController
       @full_shop << shopping_list.shopping_list_items
     end
     @full_shop.flatten!
-    # @full_shop.sort_by!(&:name)
-    @full_shop.sort_by! {|obj| obj.name.capitalize}
+    @full_shop = @full_shop.sort_by {|obj| obj.name.capitalize}
   end
 
-  def new
+  def admin_checkbox
+    item = ShoppingListItem.find(params[:item_id])
+    done = params[:item_done] == "true"
+    item.done = !done
+    item.save
+    # return render json: { random_param_name: "Hello there!"}
   end
 
   def create
