@@ -22,7 +22,7 @@ module KealyShoppingList
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
     # config.serve_static_assets = true
-    config.assets.initialize_on_precompile = false
+    # config.assets.initialize_on_precompile = false
 
   end
 end
