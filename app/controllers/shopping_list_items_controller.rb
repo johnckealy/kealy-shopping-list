@@ -79,19 +79,6 @@ class ShoppingListItemsController < ApplicationController
     shopping_list_item = ShoppingListItem.find(params[:id])
     shopping_list_item.price = params[:shopping_list_item][:price].to_f*100.0
     shopping_list_item.save
-    puts "###################################################################################"
-    puts "###################################################################################"
-    puts "###################################################################################"
-    puts
-    puts
-    puts
-    puts  "shopping_list_item errors", shopping_list_item.errors.messages
-    puts
-    puts
-    puts
-    puts
-    puts "###################################################################################"
-    puts "###################################################################################"
   end
 
 
