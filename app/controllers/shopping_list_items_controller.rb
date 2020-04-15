@@ -72,6 +72,8 @@ class ShoppingListItemsController < ApplicationController
   end
 
   def destroy
+    item = ShoppingListItem.find(params[:id])
+    item.destroy
   end
 
 end

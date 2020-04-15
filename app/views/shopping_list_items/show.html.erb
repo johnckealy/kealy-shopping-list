@@ -20,12 +20,26 @@
       <% @all_items.each do |item| %>
         <li>
           <%= item.name %>
-          <% if !item.quantity.nil?  %>
+          <% if !item.quantity.empty?  %>
            (<%= item.quantity %>)
           <% end %>
+
+          <%= link_to shopping_list_item_path(item), method: :delete, remote: true, class: "removal" do %>
+            <i style="color:red;" class="fas fa-times"></i>
+          <% end %>
+
         </li>
       <% end %>
     </ul>
   </div>
+
+  <br><br><br>
 </div>
 
+<script>
+  Array.from(document.getElementsByClassName("removal")).forEach(function(item) {
+     item.addEventListener('click', function() {
+       item.parentElement.classList.add("d-none")
+     })
+  });
+</script>

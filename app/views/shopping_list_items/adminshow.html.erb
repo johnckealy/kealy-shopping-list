@@ -1,6 +1,6 @@
 <div class="container">
 
-  <h1 style="text-align: center">Full Shopping list</h1>
+  <h1 style="text-align: center">Full Shopping list for <strong><%= @shopping_trip.date.strftime("%A, %d %b") %></strong></h1>
 
   <div class="display-list">
     <ul>
@@ -9,7 +9,7 @@
           <%= item.name %>
 
           <% if !item.quantity.nil?  %>
-            – <%= item.quantity %> – <%= item.id %>
+            – <%= item.quantity %>
           <% end %>
           <span style="opacity: 0.3">(<%= item.shopping_list.user.username[0].capitalize %>)</span>
           <%= link_to admin_checkbox_path(item_id: item.id, item_done: item.done), remote: true do %>
