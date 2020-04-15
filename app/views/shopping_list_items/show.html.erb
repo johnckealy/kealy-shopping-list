@@ -20,7 +20,7 @@
       <% @all_items.each do |item| %>
         <li>
           <%= item.name %>
-          <% if !item.quantity.empty?  %>
+          <% if !item.quantity.nil?  %>
            (<%= item.quantity %>)
           <% end %>
 

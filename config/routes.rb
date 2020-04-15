@@ -9,5 +9,6 @@ Rails.application.routes.draw do
 
   get 'adminshow', to:  'shopping_list_items#adminshow'
   get 'admin_checkbox', to:  'shopping_list_items#admin_checkbox'
+  get 'tally', to:  'shopping_list_items#tally'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

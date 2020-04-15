@@ -77,3 +77,22 @@ h1 {
   left: 10px;
   bottom: 10px;
 }
+
+
+.tally-form-text {
+  display: flex;
+  justify-content: center;
+  padding: 5px;
+  font-size: 1.2em;
+}
+
+
+.totals-card {
+  padding: 20px;
+  margin: 20px auto;
+  background-color: white;
+  border: 1px solid black;
+  ul {
+    list-style: none;
+  }
+}

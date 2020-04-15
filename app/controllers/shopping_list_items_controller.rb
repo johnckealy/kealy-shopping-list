@@ -42,7 +42,6 @@ class ShoppingListItemsController < ApplicationController
     done = params[:item_done] == "true"
     item.done = !done
     item.save
-    # return render json: { random_param_name: "Hello there!"}
   end
 
   def create
@@ -58,6 +57,7 @@ class ShoppingListItemsController < ApplicationController
         shopping_list_item = ShoppingListItem.new
         shopping_list_item.name = item.name
         shopping_list_item.quantity  = params[:shopping_list_item]["quantity"]
+        shopping_list_item.quantity = shopping_list_item.quantity.empty? ? nil : shopping_list_item.quantity
         shopping_list_item.shopping_list = @shopping_list
         shopping_list_item.save
       end
@@ -66,10 +66,21 @@ class ShoppingListItemsController < ApplicationController
   end
 
   def edit
+    @shopping_trip = ShoppingTrip.find(params[:id])
+    @full_shop = []
+    @shopping_trip.shopping_lists.each do |shopping_list|
+      @full_shop << shopping_list.shopping_list_items
+    end
+    @full_shop.flatten!
+    @full_shop = @full_shop.sort_by {|obj| obj.name.capitalize}
   end
 
   def update
+    shopping_list_item = ShoppingListItem.find(params[:id])
+    shopping_list_item.price = params[:shopping_list_item][:price].to_f*100.0
+    shopping_list_item.save
   end
+
 
   def destroy
     item = ShoppingListItem.find(params[:id])

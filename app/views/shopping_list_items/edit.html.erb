@@ -1,0 +1,55 @@
+<div class="container">
+
+  <h1>Add pricing and Tally</h1>
+
+  <% @full_shop = @full_shop.sort_by {|obj| obj.name.capitalize}  %>
+  <% @full_shop = @full_shop.select {|obj| obj.done}  %>
+
+  <% @full_shop.each do |item| %>
+    <%= simple_form_for item, html: { class: "d-flex justify-content-end"} do |f| %>
+      <span class="tally-form-text"> <%= item.name %> <% if item.quantity %>(<%= item.quantity %>) <% end %> [<%= item.shopping_list.user.username %>]</span>
+      €<%= f.input :price, label: false, placeholder: " Enter price in euro", class: "align-self-center" %>
+      <%= f.submit "Update", class: "btn btn-primary fuckyou" %>
+    <% end %>
+  <% end %>
+
+
+
+  <% User.all.each do |user| %>
+    <div class="totals-card">
+      <h2><%= user.username.capitalize %>'s Total</h2>
+      <% total = 0 %>
+      <% not_priced = [] %>
+      <ul>
+        <% @full_shop.each do |shopping_list_item|  %>
+          <% if shopping_list_item.shopping_list.user.username == user.username %>
+            <li>
+              <%= shopping_list_item.name %> €<%= shopping_list_item.price.to_f/100 %>
+            </li>
+            <% if shopping_list_item.price %>
+              <% total += shopping_list_item.price  %>
+            <% else %>
+              <% not_priced << shopping_list_item.name %>
+            <% end %>
+          <% end %>
+        <% end %>
+      </ul>
+      <hr>
+      <span><strong><%= user.username.capitalize %>'s total: €<%= total/100.0 %></strong></span>
+      <br>
+      <span><%= not_priced.size %> items were not priced</span>
+      <%= not_priced %>
+      <br>
+      <br>
+    </div>
+  <% end %>
+
+<style>
+  .fuckyou {
+    width: 150px;
+    height: 38px;
+  }
+</style>
+
+
+</div>
