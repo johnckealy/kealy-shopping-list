@@ -4,7 +4,7 @@
 
 
   <h1>Upcoming shopping trips</h1>
-  <% @shopping_trips.where("date >= ?", Time.now + 24*60*60).each do |shopping_trip| %>
+  <% @shopping_trips.where("date >= ?", Time.now - 24*60*60).each do |shopping_trip| %>
     <% if current_user.username == "admin" %>
       <div class="card"> <%= link_to shopping_trip.date.strftime("%A, %d %b"), adminshow_path(shopping_trip) %> </div>
     <% else %>
