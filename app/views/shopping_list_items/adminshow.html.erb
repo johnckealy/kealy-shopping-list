@@ -11,7 +11,7 @@
           <% if !item.quantity.nil?  %>
             – <%= item.quantity %>
           <% end %>
-          <span style="opacity: 0.3">(<%= item.shopping_list.user.username[0].capitalize %>)</span>
+          <span style="opacity: 0.3">(<%= item.shopping_list.user.username[0..1].capitalize %>)</span>
           <%= link_to admin_checkbox_path(item_id: item.id, item_done: item.done), remote: true do %>
             <% if item.done %>
               <i class="checkmark fas fa-check-circle checked"></i>
