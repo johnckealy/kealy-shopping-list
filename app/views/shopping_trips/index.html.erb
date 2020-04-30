@@ -17,9 +17,9 @@
   <% end %>
 
   <% @shopping_trips.where("date < ?", Time.now - 24*60*60).each do |shopping_trip| %>
+    <br><br><br>
+    <h1>Past shopping Trips</h1>
     <% if current_user.username == "admin" %>
-      <br><br><br>
-      <h1>Past shopping Trips</h1>
       <div class="card"> <%= link_to shopping_trip.date.strftime("%A, %d %b"), adminshow_path(shopping_trip) %> </div>
     <% end %>
   <% end %>
@@ -34,5 +34,3 @@
   </div>
 
 </div>
-
-
